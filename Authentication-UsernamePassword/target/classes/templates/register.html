@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<style>
+.navbar {
+	background-color: cadetblue;
+}
+
+.button {
+	margin: 4px 2px;
+}
+
+a {
+	color: white;
+}
+
+h5 {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	line-height: 0.1em;
+	margin: 10px 0 20px;
+}
+
+h5 span {
+	background: #fff;
+	padding: 0 10px;
+}
+</style>
+
+<body>
+
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<h2>Authentication Module Registration</h2>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+				<!-- success message -->
+				<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully registered
+					</div>
+				</div>
+				<!-- duplicate message -->
+				<div th:if="${param.duplicate}">
+					<div class="alert alert-info">Username already exists.</div>
+				</div>
+				<!-- failed message -->
+				<div th:if="${param.fail}">
+					<div class="alert alert-info">Failed to register.</div>
+				</div>
+
+				<h1>Registration</h1>
+
+				<form th:action="@{/register}" method="post" th:object="${user}">
+
+					<div class="form-group">
+						<label class="control-label" for="name"> Name </label> <input
+							id="name" class="form-control" th:field="*{name}" required
+							autofocus="autofocus" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="username"> Username </label> <input
+							id="username" class="form-control" th:field="*{username}"
+							required autofocus="autofocus" />
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Password </label> <input
+							id="password" class="form-control" type="password"
+							th:field="*{password}" required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Register</button>
+
+					</div>
+				</form>
+				<br>
+				<h5>
+					<span> OR </span>
+				</h5>
+
+
+				<div>
+					<button type="button" class="button btn btn-primary btn-block"
+						onClick=#>
+						<a href="/" th:href="@{/login}">Log in </a>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
